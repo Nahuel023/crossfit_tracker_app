@@ -29,15 +29,15 @@ export function PendingClient({ pendingBlocks, completions }: PendingClientProps
     const d = new Date(weekStart + 'T12:00:00')
     const end = new Date(d)
     end.setDate(end.getDate() + 6)
-    return `${d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} – ${end.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`
+    return `${d.toLocaleDateString('es-AR', { month: 'short', day: 'numeric' })} – ${end.toLocaleDateString('es-AR', { month: 'short', day: 'numeric', year: 'numeric' })}`
   }
 
   return (
     <div className="space-y-5">
       <div>
-        <h1 className="text-2xl font-bold">Pending Blocks</h1>
+        <h1 className="text-2xl font-bold">Bloques Pendientes</h1>
         <p className="text-sm text-muted-foreground">
-          {pendingBlocks.length} block{pendingBlocks.length !== 1 ? 's' : ''} from previous weeks
+          {pendingBlocks.length} bloque{pendingBlocks.length !== 1 ? 's' : ''} de semanas anteriores
         </p>
       </div>
 
@@ -45,8 +45,8 @@ export function PendingClient({ pendingBlocks, completions }: PendingClientProps
         <Card>
           <CardContent className="py-12 text-center">
             <Clock className="h-10 w-10 mx-auto mb-3 text-muted-foreground/50" />
-            <p className="font-medium">All caught up!</p>
-            <p className="text-sm text-muted-foreground mt-1">No pending blocks from previous weeks.</p>
+            <p className="font-medium">¡Todo al día!</p>
+            <p className="text-sm text-muted-foreground mt-1">No hay bloques pendientes de semanas anteriores.</p>
           </CardContent>
         </Card>
       ) : (

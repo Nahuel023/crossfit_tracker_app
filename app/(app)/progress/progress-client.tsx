@@ -37,7 +37,7 @@ export function ProgressClient({ skillLogs, bodyWeightLogs, completions }: Progr
       .filter(l => l.skill === skill)
       .map(l => ({
         date: l.logged_at,
-        label: new Date(l.logged_at + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+        label: new Date(l.logged_at + 'T12:00:00').toLocaleDateString('es-AR', { month: 'short', day: 'numeric' }),
         value: l.metric_value,
         metricType: l.metric_type,
         feel: l.feel,
@@ -60,7 +60,7 @@ export function ProgressClient({ skillLogs, bodyWeightLogs, completions }: Progr
       map[month] = (map[month] || 0) + 1
     })
     return Object.entries(map).sort().map(([month, count]) => ({
-      label: new Date(month + '-01T12:00:00').toLocaleDateString('en-US', { month: 'short', year: '2-digit' }),
+      label: new Date(month + '-01T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
       count,
     }))
   })()
@@ -72,14 +72,14 @@ export function ProgressClient({ skillLogs, bodyWeightLogs, completions }: Progr
   return (
     <div className="space-y-5">
       <div>
-        <h1 className="text-2xl font-bold">Progress</h1>
-        <p className="text-sm text-muted-foreground">Track your improvements over time</p>
+        <h1 className="text-2xl font-bold">Progreso</h1>
+        <p className="text-sm text-muted-foreground">Seguí tus mejoras a lo largo del tiempo</p>
       </div>
 
       <Tabs defaultValue="skills">
         <TabsList className="grid grid-cols-2 w-full">
-          <TabsTrigger value="skills">Skills</TabsTrigger>
-          <TabsTrigger value="volume">Volume</TabsTrigger>
+          <TabsTrigger value="skills">Habilidades</TabsTrigger>
+          <TabsTrigger value="volume">Volumen</TabsTrigger>
         </TabsList>
 
         <TabsContent value="skills" className="space-y-4 mt-4">
@@ -103,12 +103,12 @@ export function ProgressClient({ skillLogs, bodyWeightLogs, completions }: Progr
             <div className="flex items-center gap-2 p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
               <TrendingUp className="h-4 w-4 text-yellow-400 shrink-0" />
               <div>
-                <p className="text-xs text-muted-foreground">Personal Record</p>
+                <p className="text-xs text-muted-foreground">Récord Personal</p>
                 <p className="font-bold text-yellow-400">{selectedPR.metric_value} {getMetricLabel(selectedPR.metric_type)}</p>
               </div>
               <div className="ml-auto text-right">
                 <p className="text-xs text-muted-foreground">
-                  {new Date(selectedPR.logged_at + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                  {new Date(selectedPR.logged_at + 'T12:00:00').toLocaleDateString('es-AR', { month: 'short', day: 'numeric', year: 'numeric' })}
                 </p>
               </div>
             </div>
@@ -151,7 +151,7 @@ export function ProgressClient({ skillLogs, bodyWeightLogs, completions }: Progr
           ) : selectedData.length === 1 ? (
             <Card>
               <CardContent className="py-6 text-center">
-                <p className="text-muted-foreground text-sm">Only 1 entry logged. Keep logging to see a chart!</p>
+                <p className="text-muted-foreground text-sm">Solo 1 registro. ¡Seguí registrando para ver el gráfico!</p>
                 <p className="text-lg font-bold mt-2">{selectedData[0].value} {getMetricLabel(metricType)}</p>
                 <p className="text-xs text-muted-foreground">{selectedData[0].label}</p>
               </CardContent>
@@ -159,8 +159,8 @@ export function ProgressClient({ skillLogs, bodyWeightLogs, completions }: Progr
           ) : (
             <Card>
               <CardContent className="py-6 text-center">
-                <p className="text-muted-foreground text-sm">No data yet for {getSkillLabel(selectedSkill)}.</p>
-                <p className="text-xs text-muted-foreground mt-1">Log this skill after your sessions to track progress.</p>
+                <p className="text-muted-foreground text-sm">Sin datos para {getSkillLabel(selectedSkill)}.</p>
+                <p className="text-xs text-muted-foreground mt-1">Registrá esta habilidad después de entrenar.</p>
               </CardContent>
             </Card>
           )}
@@ -169,7 +169,7 @@ export function ProgressClient({ skillLogs, bodyWeightLogs, completions }: Progr
           {selectedData.length > 0 && (
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm">Recent logs</CardTitle>
+                <CardTitle className="text-sm">Registros recientes</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
@@ -193,11 +193,11 @@ export function ProgressClient({ skillLogs, bodyWeightLogs, completions }: Progr
           {/* All PRs table */}
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm">Personal Records</CardTitle>
+              <CardTitle className="text-sm">Récords Personales</CardTitle>
             </CardHeader>
             <CardContent>
               {skillsWithData.length === 0 ? (
-                <p className="text-xs text-muted-foreground text-center py-4">No skill data yet. Start logging!</p>
+                <p className="text-xs text-muted-foreground text-center py-4">Sin datos todavía. ¡Empezá a registrar!</p>
               ) : (
                 <div className="space-y-2">
                   {skillsWithData.map(skill => {
@@ -209,7 +209,7 @@ export function ProgressClient({ skillLogs, bodyWeightLogs, completions }: Progr
                         <div className="text-right">
                           <p className="text-sm font-bold">{pr.metric_value} {getMetricLabel(pr.metric_type)}</p>
                           <p className="text-xs text-muted-foreground">
-                            {new Date(pr.logged_at + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                            {new Date(pr.logged_at + 'T12:00:00').toLocaleDateString('es-AR', { month: 'short', day: 'numeric' })}
                           </p>
                         </div>
                       </div>
@@ -225,7 +225,7 @@ export function ProgressClient({ skillLogs, bodyWeightLogs, completions }: Progr
           {monthlyData.length > 0 ? (
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm">Blocks completed per month</CardTitle>
+                <CardTitle className="text-sm">Bloques completados por mes</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={220}>
@@ -243,7 +243,7 @@ export function ProgressClient({ skillLogs, bodyWeightLogs, completions }: Progr
                         borderRadius: 8,
                         fontSize: 12,
                       }}
-                      formatter={(v) => [v, 'Blocks']}
+                      formatter={(v) => [v, 'Bloques']}
                     />
                     <Bar dataKey="count" fill="hsl(var(--chart-1))" radius={[4, 4, 0, 0]} />
                   </BarChart>
@@ -253,7 +253,7 @@ export function ProgressClient({ skillLogs, bodyWeightLogs, completions }: Progr
           ) : (
             <Card>
               <CardContent className="py-8 text-center">
-                <p className="text-muted-foreground text-sm">Complete some blocks to see volume data.</p>
+                <p className="text-muted-foreground text-sm">Completá algunos bloques para ver el volumen.</p>
               </CardContent>
             </Card>
           )}

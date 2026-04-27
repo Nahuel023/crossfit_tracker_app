@@ -37,9 +37,9 @@ export function WeightClient({ initialLogs, userId }: WeightClientProps) {
       .select()
       .single()
     if (error) {
-      toast.error('Failed to save')
+      toast.error('Error al guardar')
     } else {
-      toast.success('Weight logged!')
+      toast.success('¡Peso registrado!')
       setLogs(prev => [...prev, data].sort((a, b) => a.logged_at.localeCompare(b.logged_at)))
       setWeight('')
       setNotes('')
@@ -50,7 +50,7 @@ export function WeightClient({ initialLogs, userId }: WeightClientProps) {
   const chartData = logs.map(l => ({
     date: l.logged_at,
     weight: l.weight_kg,
-    label: new Date(l.logged_at + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+    label: new Date(l.logged_at + 'T12:00:00').toLocaleDateString('es-AR', { month: 'short', day: 'numeric' }),
   }))
 
   const latestWeight = logs.length > 0 ? logs[logs.length - 1].weight_kg : null
@@ -63,8 +63,8 @@ export function WeightClient({ initialLogs, userId }: WeightClientProps) {
   return (
     <div className="space-y-5">
       <div>
-        <h1 className="text-2xl font-bold">Body Weight</h1>
-        <p className="text-sm text-muted-foreground">Target: 93–95 kg by October 2026</p>
+        <h1 className="text-2xl font-bold">Peso Corporal</h1>
+        <p className="text-sm text-muted-foreground">Objetivo: 93–95 kg para octubre 2026</p>
       </div>
 
       {/* Stats */}
@@ -73,20 +73,20 @@ export function WeightClient({ initialLogs, userId }: WeightClientProps) {
           <CardContent className="p-3 text-center">
             <Scale className="h-4 w-4 mx-auto mb-1 text-blue-400" />
             <p className="text-lg font-bold">{latestWeight ?? 101.5} kg</p>
-            <p className="text-xs text-muted-foreground">Current</p>
+            <p className="text-xs text-muted-foreground">Actual</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-3 text-center">
             <TrendingDown className="h-4 w-4 mx-auto mb-1 text-green-400" />
             <p className="text-lg font-bold">{change > 0 ? '+' : ''}{change.toFixed(1)} kg</p>
-            <p className="text-xs text-muted-foreground">Change</p>
+            <p className="text-xs text-muted-foreground">Cambio</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-3 text-center">
             <p className="text-sm font-bold text-orange-400 mt-1">93–95</p>
-            <p className="text-xs text-muted-foreground">Target kg</p>
+            <p className="text-xs text-muted-foreground">Objetivo kg</p>
           </CardContent>
         </Card>
       </div>
@@ -95,7 +95,7 @@ export function WeightClient({ initialLogs, userId }: WeightClientProps) {
       {logs.length > 1 && (
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm">Weight over time</CardTitle>
+            <CardTitle className="text-sm">Peso en el tiempo</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={200}>
@@ -117,7 +117,7 @@ export function WeightClient({ initialLogs, userId }: WeightClientProps) {
                     borderRadius: 8,
                     fontSize: 12,
                   }}
-                  formatter={(v) => [`${v} kg`, 'Weight']}
+                  formatter={(v) => [`${v} kg`, 'Peso']}
                 />
                 <ReferenceLine y={93} stroke="hsl(var(--chart-2))" strokeDasharray="4 4" label={{ value: '93 kg', fontSize: 10, fill: 'hsl(var(--chart-2))' }} />
                 <ReferenceLine y={95} stroke="hsl(var(--chart-2))" strokeDasharray="4 4" label={{ value: '95 kg', fontSize: 10, fill: 'hsl(var(--chart-2))' }} />
@@ -138,13 +138,13 @@ export function WeightClient({ initialLogs, userId }: WeightClientProps) {
       {/* Log form */}
       <Card>
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm">Log weight</CardTitle>
+          <CardTitle className="text-sm">Registrar peso</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-3">
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1.5">
-                <Label className="text-xs">Date</Label>
+                <Label className="text-xs">Fecha</Label>
                 <Input
                   type="date"
                   value={date}
@@ -153,7 +153,7 @@ export function WeightClient({ initialLogs, userId }: WeightClientProps) {
                 />
               </div>
               <div className="space-y-1.5">
-                <Label className="text-xs">Weight (kg)</Label>
+                <Label className="text-xs">Peso (kg)</Label>
                 <Input
                   type="number"
                   step="0.1"
@@ -167,15 +167,15 @@ export function WeightClient({ initialLogs, userId }: WeightClientProps) {
               </div>
             </div>
             <div className="space-y-1.5">
-              <Label className="text-xs">Notes (optional)</Label>
+              <Label className="text-xs">Notas (opcional)</Label>
               <Input
                 value={notes}
                 onChange={e => setNotes(e.target.value)}
-                placeholder="Morning, fasted…"
+                placeholder="En ayunas, por la mañana…"
               />
             </div>
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? 'Saving…' : 'Log weight'}
+              {loading ? 'Guardando…' : 'Registrar peso'}
             </Button>
           </form>
         </CardContent>
@@ -185,7 +185,7 @@ export function WeightClient({ initialLogs, userId }: WeightClientProps) {
       {logs.length > 0 && (
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm">Recent entries</CardTitle>
+            <CardTitle className="text-sm">Registros recientes</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
@@ -196,7 +196,7 @@ export function WeightClient({ initialLogs, userId }: WeightClientProps) {
                     {log.notes && <p className="text-xs text-muted-foreground">{log.notes}</p>}
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    {new Date(log.logged_at + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                    {new Date(log.logged_at + 'T12:00:00').toLocaleDateString('es-AR', { month: 'short', day: 'numeric' })}
                   </p>
                 </div>
               ))}

@@ -23,7 +23,7 @@ interface BlockCardProps {
   dateLabel?: string
 }
 
-const feelLabels = ['', 'Terrible', 'Bad', 'OK', 'Good', 'Excellent']
+const feelLabels = ['', 'Terrible', 'Mal', 'OK', 'Bien', 'Excelente']
 const feelColors = ['', 'text-red-500', 'text-orange-500', 'text-yellow-500', 'text-green-500', 'text-emerald-500']
 
 export function BlockCard({ block, completion, onStatusChange, showDate, dateLabel }: BlockCardProps) {
@@ -89,9 +89,9 @@ export function BlockCard({ block, completion, onStatusChange, showDate, dateLab
       logged_at: new Date().toISOString().split('T')[0],
     })
     if (error) {
-      toast.error('Failed to log skill')
+      toast.error('Error al registrar')
     } else {
-      toast.success('Skill logged!')
+      toast.success('¡Registrado!')
       setShowLog(false)
       setMetricValue('')
       setNotes('')
@@ -164,7 +164,7 @@ export function BlockCard({ block, completion, onStatusChange, showDate, dateLab
                   className="text-xs text-muted-foreground flex items-center gap-1 hover:text-foreground transition-colors"
                 >
                   {expanded ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
-                  {expanded ? 'Less' : 'Details'}
+                  {expanded ? 'Menos' : 'Detalles'}
                 </button>
                 {block.skills.length > 0 && (
                   <button
@@ -172,7 +172,7 @@ export function BlockCard({ block, completion, onStatusChange, showDate, dateLab
                     className="text-xs text-blue-400 flex items-center gap-1 hover:text-blue-300 transition-colors"
                   >
                     <Dumbbell className="h-3 w-3" />
-                    Log skill
+                    Registrar
                   </button>
                 )}
                 <button
@@ -198,11 +198,11 @@ export function BlockCard({ block, completion, onStatusChange, showDate, dateLab
       <Dialog open={showLog} onOpenChange={setShowLog}>
         <DialogContent className="max-w-sm">
           <DialogHeader>
-            <DialogTitle>Log Skill — {block.title}</DialogTitle>
+            <DialogTitle>Registrar — {block.title}</DialogTitle>
           </DialogHeader>
           <form onSubmit={handleLogSkill} className="space-y-4">
             <div className="space-y-2">
-              <Label>Skill</Label>
+              <Label>Habilidad</Label>
               <Select value={skill} onValueChange={setSkill}>
                 <SelectTrigger>
                   <SelectValue />
@@ -217,16 +217,16 @@ export function BlockCard({ block, completion, onStatusChange, showDate, dateLab
 
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-2">
-                <Label>Metric</Label>
+                <Label>Métrica</Label>
                 <Select value={metricType} onValueChange={v => setMetricType(v as MetricType)}>
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="reps">Reps</SelectItem>
-                    <SelectItem value="weight_kg">Weight (kg)</SelectItem>
-                    <SelectItem value="time_seconds">Time (sec)</SelectItem>
-                    <SelectItem value="distance_meters">Distance (m)</SelectItem>
+                    <SelectItem value="weight_kg">Peso (kg)</SelectItem>
+                    <SelectItem value="time_seconds">Tiempo (seg)</SelectItem>
+                    <SelectItem value="distance_meters">Distancia (m)</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -245,7 +245,7 @@ export function BlockCard({ block, completion, onStatusChange, showDate, dateLab
             </div>
 
             <div className="space-y-2">
-              <Label>How did it feel? <span className={cn('font-medium', feelColors[feel])}>{feelLabels[feel]}</span></Label>
+              <Label>¿Cómo te sentiste? <span className={cn('font-medium', feelColors[feel])}>{feelLabels[feel]}</span></Label>
               <div className="flex gap-2">
                 {[1, 2, 3, 4, 5].map(n => (
                   <button
@@ -266,21 +266,21 @@ export function BlockCard({ block, completion, onStatusChange, showDate, dateLab
             </div>
 
             <div className="space-y-2">
-              <Label>Notes (optional)</Label>
+              <Label>Notas (opcional)</Label>
               <Textarea
                 value={notes}
                 onChange={e => setNotes(e.target.value)}
-                placeholder="Any notes about this session…"
+                placeholder="Notas sobre la sesión…"
                 rows={2}
               />
             </div>
 
             <div className="flex gap-2">
               <Button type="button" variant="outline" className="flex-1" onClick={() => setShowLog(false)}>
-                Cancel
+                Cancelar
               </Button>
               <Button type="submit" className="flex-1" disabled={loading}>
-                {loading ? 'Saving…' : 'Save'}
+                {loading ? 'Guardando…' : 'Guardar'}
               </Button>
             </div>
           </form>

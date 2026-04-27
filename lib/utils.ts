@@ -32,21 +32,21 @@ export function getCategoryDotColor(category: Category): string {
 
 export function getCategoryLabel(category: Category): string {
   const labels: Record<Category, string> = {
-    strength: 'Strength',
-    gymnastics: 'Gymnastics',
+    strength: 'Fuerza',
+    gymnastics: 'Gimnasia',
     cardio: 'Cardio',
-    olympic_lifting: 'Olympic Lifting',
-    travel: 'Travel',
-    milestone: 'Milestone',
+    olympic_lifting: 'Levantamiento',
+    travel: 'Viaje',
+    milestone: 'Meta',
   }
   return labels[category] ?? category
 }
 
 export function getPhaseLabel(phase: Phase): string {
   const labels: Record<Phase, string> = {
-    build: 'Phase 1 — Build',
-    competition: 'Phase 2 — Competition',
-    elite: 'Phase 3 — Elite',
+    build: 'Fase 1 — Construcción',
+    competition: 'Fase 2 — Competencia',
+    elite: 'Fase 3 — Elite',
   }
   return labels[phase]
 }
@@ -119,5 +119,5 @@ export function formatDateISO(date: Date): string {
   return date.toISOString().split('T')[0]
 }
 
-export const DAY_NAMES = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-export const DAY_NAMES_FULL = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+export const DAY_NAMES = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom']
+export const DAY_NAMES_FULL = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']

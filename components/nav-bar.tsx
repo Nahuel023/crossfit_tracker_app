@@ -16,14 +16,14 @@ import {
 import { Badge } from '@/components/ui/badge'
 
 const navItems = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/planner', label: 'Planner', icon: CalendarDays },
-  { href: '/progress', label: 'Progress', icon: TrendingUp },
-  { href: '/weight', label: 'Weight', icon: Scale },
-  { href: '/pending', label: 'Pending', icon: Clock },
-  { href: '/milestones', label: 'Milestones', icon: Trophy },
-  { href: '/travel', label: 'Travel', icon: Plane },
-  { href: '/settings', label: 'Settings', icon: Settings },
+  { href: '/dashboard', label: 'Inicio', icon: LayoutDashboard },
+  { href: '/planner', label: 'Plan', icon: CalendarDays },
+  { href: '/progress', label: 'Progreso', icon: TrendingUp },
+  { href: '/weight', label: 'Peso', icon: Scale },
+  { href: '/pending', label: 'Pendiente', icon: Clock },
+  { href: '/milestones', label: 'Metas', icon: Trophy },
+  { href: '/travel', label: 'Viaje', icon: Plane },
+  { href: '/settings', label: 'Ajustes', icon: Settings },
 ]
 
 interface NavBarProps {
@@ -40,6 +40,7 @@ export function NavBar({ pendingCount = 0 }: NavBarProps) {
         <div className="p-4 border-b border-border">
           <p className="font-bold text-lg">CrossFit Tracker</p>
           <p className="text-xs text-muted-foreground">Nahuel · 2026→2027</p>
+
         </div>
         <nav className="flex-1 p-3 space-y-1">
           {navItems.map(({ href, label, icon: Icon }) => {
@@ -57,7 +58,7 @@ export function NavBar({ pendingCount = 0 }: NavBarProps) {
               >
                 <Icon className="h-4 w-4 shrink-0" />
                 {label}
-                {label === 'Pending' && pendingCount > 0 && (
+                {label === 'Pendiente' && pendingCount > 0 && (
                   <Badge variant="destructive" className="ml-auto h-5 text-xs px-1.5">
                     {pendingCount}
                   </Badge>
@@ -84,7 +85,7 @@ export function NavBar({ pendingCount = 0 }: NavBarProps) {
               >
                 <div className="relative">
                   <Icon className="h-5 w-5" />
-                  {label === 'Pending' && pendingCount > 0 && (
+                  {label === 'Pendiente' && pendingCount > 0 && (
                     <span className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground rounded-full text-[10px] w-4 h-4 flex items-center justify-center font-bold">
                       {pendingCount > 9 ? '9+' : pendingCount}
                     </span>
@@ -103,7 +104,7 @@ export function NavBar({ pendingCount = 0 }: NavBarProps) {
             )}
           >
             <Settings className="h-5 w-5" />
-            <span className="text-[10px] leading-none">Settings</span>
+            <span className="text-[10px] leading-none">Ajustes</span>
           </Link>
         </div>
       </nav>

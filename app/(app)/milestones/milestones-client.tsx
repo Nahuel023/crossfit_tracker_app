@@ -68,7 +68,7 @@ export function MilestonesClient({ milestones, competitions: initialCompetitions
     if (error) {
       toast.error('Failed to save')
     } else {
-      toast.success('Milestone achieved! 🎉')
+      toast.success('¡Meta lograda! 🎉')
       setSelectedMilestone(null)
       router.refresh()
     }
@@ -100,7 +100,7 @@ export function MilestonesClient({ milestones, competitions: initialCompetitions
     if (error) {
       toast.error('Failed to save')
     } else {
-      toast.success('Competition logged!')
+      toast.success('¡Competencia registrada!')
       setCompetitions(prev => [data, ...prev])
       setShowAddComp(false)
       setCompDate('')
@@ -113,8 +113,8 @@ export function MilestonesClient({ milestones, competitions: initialCompetitions
   return (
     <div className="space-y-5">
       <div>
-        <h1 className="text-2xl font-bold">October Milestones</h1>
-        <p className="text-sm text-muted-foreground">Competition targets for October 2026</p>
+        <h1 className="text-2xl font-bold">Metas de Octubre</h1>
+        <p className="text-sm text-muted-foreground">Objetivos de competencia para octubre 2026</p>
       </div>
 
       {/* Summary cards */}
@@ -122,7 +122,7 @@ export function MilestonesClient({ milestones, competitions: initialCompetitions
         <Card>
           <CardContent className="p-3">
             <div className="flex items-center justify-between mb-2">
-              <p className="text-xs text-muted-foreground">Minimum targets</p>
+              <p className="text-xs text-muted-foreground">Objetivos mínimos</p>
               <Target className="h-4 w-4 text-yellow-400" />
             </div>
             <p className="text-xl font-bold">{achievedMinimum}/{totalMinimum}</p>
@@ -132,7 +132,7 @@ export function MilestonesClient({ milestones, competitions: initialCompetitions
         <Card>
           <CardContent className="p-3">
             <div className="flex items-center justify-between mb-2">
-              <p className="text-xs text-muted-foreground">Ideal targets</p>
+              <p className="text-xs text-muted-foreground">Objetivos ideales</p>
               <Trophy className="h-4 w-4 text-purple-400" />
             </div>
             <p className="text-xl font-bold">{achievedIdeal}/{totalIdeal}</p>
@@ -143,8 +143,8 @@ export function MilestonesClient({ milestones, competitions: initialCompetitions
 
       <Tabs defaultValue="milestones">
         <TabsList className="grid grid-cols-2 w-full">
-          <TabsTrigger value="milestones">Milestones</TabsTrigger>
-          <TabsTrigger value="competitions">Competitions</TabsTrigger>
+          <TabsTrigger value="milestones">Metas</TabsTrigger>
+          <TabsTrigger value="competitions">Competencias</TabsTrigger>
         </TabsList>
 
         <TabsContent value="milestones" className="space-y-3 mt-4">
@@ -157,7 +157,7 @@ export function MilestonesClient({ milestones, competitions: initialCompetitions
                 {minimum && (
                   <MilestoneRow
                     milestone={minimum}
-                    label="Minimum"
+                    label="Mínimo"
                     onMark={() => { setSelectedMilestone(minimum); setAchievedValue('') }}
                     onUnmark={() => handleUnmark(minimum)}
                   />
@@ -166,6 +166,7 @@ export function MilestonesClient({ milestones, competitions: initialCompetitions
                   <MilestoneRow
                     milestone={ideal}
                     label="Ideal"
+
                     onMark={() => { setSelectedMilestone(ideal); setAchievedValue('') }}
                     onUnmark={() => handleUnmark(ideal)}
                   />
@@ -178,14 +179,14 @@ export function MilestonesClient({ milestones, competitions: initialCompetitions
         <TabsContent value="competitions" className="space-y-4 mt-4">
           <Button onClick={() => setShowAddComp(true)} className="w-full">
             <Plus className="h-4 w-4 mr-2" />
-            Log competition result
+            Registrar competencia
           </Button>
 
           {competitions.length === 0 ? (
             <Card>
               <CardContent className="py-10 text-center">
                 <Trophy className="h-8 w-8 mx-auto mb-2 text-muted-foreground/30" />
-                <p className="text-sm text-muted-foreground">No competitions logged yet.</p>
+                <p className="text-sm text-muted-foreground">Sin competencias registradas todavía.</p>
               </CardContent>
             </Card>
           ) : (
@@ -196,7 +197,7 @@ export function MilestonesClient({ milestones, competitions: initialCompetitions
                     <div>
                       <p className="font-medium">{comp.competition_name}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">
-                        {new Date(comp.competition_date + 'T12:00:00').toLocaleDateString('en-US', {
+                        {new Date(comp.competition_date + 'T12:00:00').toLocaleDateString('es-AR', {
                           weekday: 'short', year: 'numeric', month: 'short', day: 'numeric',
                         })}
                       </p>
@@ -219,19 +220,19 @@ export function MilestonesClient({ milestones, competitions: initialCompetitions
       <Dialog open={!!selectedMilestone} onOpenChange={open => !open && setSelectedMilestone(null)}>
         <DialogContent className="max-w-sm">
           <DialogHeader>
-            <DialogTitle>Mark Milestone Achieved</DialogTitle>
+            <DialogTitle>Marcar Meta Lograda</DialogTitle>
           </DialogHeader>
           {selectedMilestone && (
             <form onSubmit={handleMarkAchieved} className="space-y-4">
               <div className="p-3 bg-muted rounded-lg">
                 <p className="text-sm font-medium">{getSkillLabel(selectedMilestone.skill)}</p>
                 <p className="text-xs text-muted-foreground">
-                  Target: {selectedMilestone.target_value} {selectedMilestone.target_unit}
+                  Objetivo: {selectedMilestone.target_value} {selectedMilestone.target_unit}
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1.5">
-                  <Label className="text-xs">Achieved value</Label>
+                  <Label className="text-xs">Valor logrado</Label>
                   <Input
                     type="number"
                     step="0.5"
@@ -243,7 +244,7 @@ export function MilestonesClient({ milestones, competitions: initialCompetitions
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <Label className="text-xs">Date</Label>
+                  <Label className="text-xs">Fecha</Label>
                   <Input
                     type="date"
                     value={achievedDate}
@@ -254,10 +255,10 @@ export function MilestonesClient({ milestones, competitions: initialCompetitions
               </div>
               <div className="flex gap-2">
                 <Button type="button" variant="outline" className="flex-1" onClick={() => setSelectedMilestone(null)}>
-                  Cancel
+                  Cancelar
                 </Button>
                 <Button type="submit" className="flex-1" disabled={loading}>
-                  {loading ? 'Saving…' : 'Mark achieved'}
+                  {loading ? 'Guardando…' : 'Marcar logrado'}
                 </Button>
               </div>
             </form>
@@ -269,11 +270,11 @@ export function MilestonesClient({ milestones, competitions: initialCompetitions
       <Dialog open={showAddComp} onOpenChange={setShowAddComp}>
         <DialogContent className="max-w-sm">
           <DialogHeader>
-            <DialogTitle>Log Competition</DialogTitle>
+            <DialogTitle>Registrar Competencia</DialogTitle>
           </DialogHeader>
           <form onSubmit={handleAddCompetition} className="space-y-3">
             <div className="space-y-1.5">
-              <Label className="text-xs">Competition name</Label>
+              <Label className="text-xs">Nombre de la competencia</Label>
               <Input
                 value={compName}
                 onChange={e => setCompName(e.target.value)}
@@ -287,7 +288,7 @@ export function MilestonesClient({ milestones, competitions: initialCompetitions
                 <Input type="date" value={compDate} onChange={e => setCompDate(e.target.value)} required />
               </div>
               <div className="space-y-1.5">
-                <Label className="text-xs">Category</Label>
+                <Label className="text-xs">Categoría</Label>
                 <Select value={compCategory} onValueChange={v => setCompCategory(v as 'scaled' | 'rx')}>
                   <SelectTrigger>
                     <SelectValue />
@@ -300,20 +301,20 @@ export function MilestonesClient({ milestones, competitions: initialCompetitions
               </div>
             </div>
             <div className="space-y-1.5">
-              <Label className="text-xs">Notes / result</Label>
+              <Label className="text-xs">Notas / resultado</Label>
               <Textarea
                 value={compNotes}
                 onChange={e => setCompNotes(e.target.value)}
-                placeholder="WOD description, score, how it went…"
+                placeholder="Descripción del WOD, score, cómo salió…"
                 rows={3}
               />
             </div>
             <div className="flex gap-2">
               <Button type="button" variant="outline" className="flex-1" onClick={() => setShowAddComp(false)}>
-                Cancel
+                Cancelar
               </Button>
               <Button type="submit" className="flex-1" disabled={loading}>
-                {loading ? 'Saving…' : 'Save'}
+                {loading ? 'Guardando…' : 'Guardar'}
               </Button>
             </div>
           </form>
@@ -349,14 +350,14 @@ function MilestoneRow({
       </button>
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
-          <Badge variant="outline" className={cn('text-[10px] px-1.5 py-0', label === 'Minimum' ? 'border-yellow-500/40 text-yellow-400' : 'border-purple-500/40 text-purple-400')}>
+          <Badge variant="outline" className={cn('text-[10px] px-1.5 py-0', label === 'Mínimo' ? 'border-yellow-500/40 text-yellow-400' : 'border-purple-500/40 text-purple-400')}>
             {label}
           </Badge>
           <span className="text-sm font-medium">{milestone.target_value} {milestone.target_unit}</span>
         </div>
         {achieved && milestone.achieved_value && (
           <p className="text-xs text-green-400 mt-0.5">
-            Achieved: {milestone.achieved_value} {milestone.target_unit} on {new Date(milestone.achieved_at! + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+            Logrado: {milestone.achieved_value} {milestone.target_unit} el {new Date(milestone.achieved_at! + 'T12:00:00').toLocaleDateString('es-AR', { month: 'short', day: 'numeric' })}
           </p>
         )}
       </div>

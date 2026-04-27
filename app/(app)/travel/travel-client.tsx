@@ -18,25 +18,25 @@ interface TravelClientProps {
 type TripDuration = 'short' | 'medium' | 'long'
 
 const tripLabels: Record<TripDuration, string> = {
-  short: 'Short (3-5 days)',
-  medium: 'Medium (6-10 days)',
-  long: 'Long (11-15 days)',
+  short: 'Corto (3-5 días)',
+  medium: 'Medio (6-10 días)',
+  long: 'Largo (11-15 días)',
 }
 
 const tripDescriptions: Record<TripDuration, { goal: string; duration: string; color: string }> = {
   short: {
-    goal: "Don't lose what was built. 45-60 min sessions, evenings.",
-    duration: '3–5 days',
+    goal: 'No perder lo ganado. Sesiones de 45-60 min, por las tardes.',
+    duration: '3–5 días',
     color: 'text-orange-400',
   },
   medium: {
-    goal: 'Keep building. 45-60 min sessions. Add gym equipment when available.',
-    duration: '6–10 days',
+    goal: 'Seguir construyendo. Sesiones de 45-60 min. Usá el gym si hay.',
+    duration: '6–10 días',
     color: 'text-yellow-400',
   },
   long: {
-    goal: 'Treat as a training week. Structure sessions like home week.',
-    duration: '11–15 days',
+    goal: 'Tratarlo como una semana de entrenamiento normal.',
+    duration: '11–15 días',
     color: 'text-red-400',
   },
 }
@@ -44,64 +44,64 @@ const tripDescriptions: Record<TripDuration, { goal: string; duration: string; c
 const travelProtocols: Record<TripDuration, { title: string; items: string[] }[]> = {
   short: [
     {
-      title: 'Push',
-      items: ['HSPU progression against wall', 'Pike push-ups (feet on chair)', 'Dips on chair or parallel bars'],
+      title: 'Empuje',
+      items: ['Progresión HSPU contra la pared', 'Pike push-ups (pies en silla)', 'Dips en silla o paralelas'],
     },
     {
-      title: 'Pull',
-      items: ['Find a bar (park, hotel gym)', 'If no bar: towel rows, door frame holds', 'Ring work if available'],
+      title: 'Tirón',
+      items: ['Buscá una barra (plaza, hotel gym)', 'Sin barra: remo con toalla, sostén en marco de puerta', 'Trabajo en anillas si hay'],
     },
     {
-      title: 'Legs',
-      items: ['Pistol squat practice', 'Jump squats', 'Bulgarian split squat'],
+      title: 'Piernas',
+      items: ['Práctica de pistol squat', 'Saltos en sentadilla', 'Bulgarian split squat'],
     },
     {
       title: 'Core',
-      items: ['Hollow body holds', 'Arch holds', 'L-sit progression'],
+      items: ['Hollow body holds', 'Arch holds', 'Progresión L-sit'],
     },
     {
       title: 'Cardio',
-      items: ['20 min zone 2 run at conversational pace'],
+      items: ['20 min trote zona 2 a ritmo conversacional'],
     },
   ],
   medium: [
     {
-      title: 'Gym additions',
-      items: ['Weighted pull-ups (use available load)', 'Ring work if rings available', 'Barbell: snatch/clean at moderate load'],
+      title: 'Adiciones con gym',
+      items: ['Pull-ups con peso (lo que haya)', 'Trabajo en anillas si hay', 'Barra: snatch/clean a carga moderada'],
     },
     {
-      title: 'Bodyweight HSPU',
-      items: ['Aim for 10+ reps per session', 'Full ROM against wall'],
+      title: 'HSPU sin peso',
+      items: ['Apuntá a 10+ reps por sesión', 'ROM completo contra la pared'],
     },
     {
       title: 'Muscle-Up',
-      items: ['Jumping MU or banded if available', 'Box transition practice'],
+      items: ['MU con salto o banda si hay', 'Práctica de transición en cajón'],
     },
     {
       title: 'Handstand Walk',
-      items: ['15 min dedicated practice per session'],
+      items: ['15 min de práctica dedicada por sesión'],
     },
     {
       title: 'Cardio',
-      items: ['Zone 2: 30 min minimum', '2 sessions per week'],
+      items: ['Zona 2: mínimo 30 min', '2 sesiones por semana'],
     },
   ],
   long: [
     {
-      title: 'Day 1-2: Activation',
-      items: ['Light volume only', 'Mobility focus', 'Movement pattern restoration'],
+      title: 'Días 1-2: Activación',
+      items: ['Volumen liviano', 'Foco en movilidad', 'Restaurar patrones de movimiento'],
     },
     {
-      title: 'Day 3-8: Full sessions',
-      items: ['Full bodyweight protocol', 'Add available equipment', 'Same structure as home week'],
+      title: 'Días 3-8: Sesiones completas',
+      items: ['Protocolo completo de peso corporal', 'Agregá el equipo disponible', 'Misma estructura que en casa'],
     },
     {
-      title: 'Day 9-11: Peak',
-      items: ['Highest intensity of the trip', 'Competition simulation if possible'],
+      title: 'Días 9-11: Pico',
+      items: ['Mayor intensidad del viaje', 'Simulación de competencia si es posible'],
     },
     {
-      title: 'Day 12-15: Deload',
-      items: ['Reduced volume', 'Mobility work', 'Zone 2 only cardio'],
+      title: 'Días 12-15: Descarga',
+      items: ['Volumen reducido', 'Trabajo de movilidad', 'Solo cardio zona 2'],
     },
   ],
 }
@@ -122,8 +122,8 @@ export function TravelClient({ travelBlocks, userId }: TravelClientProps) {
   return (
     <div className="space-y-5">
       <div>
-        <h1 className="text-2xl font-bold">Travel Mode</h1>
-        <p className="text-sm text-muted-foreground">Maintain your fitness on the road</p>
+        <h1 className="text-2xl font-bold">Modo Viaje</h1>
+        <p className="text-sm text-muted-foreground">Mantenete en forma cuando viajás</p>
       </div>
 
       {/* Toggle */}
@@ -135,9 +135,9 @@ export function TravelClient({ travelBlocks, userId }: TravelClientProps) {
                 <Plane className="h-5 w-5 text-orange-400" />
               </div>
               <div>
-                <p className="font-medium">Travel mode</p>
+                <p className="font-medium">Modo viaje</p>
                 <p className="text-xs text-muted-foreground">
-                  {travelMode ? 'Active — using travel protocol' : 'Off — using normal plan'}
+                  {travelMode ? 'Activo — usando protocolo de viaje' : 'Desactivado — usando el plan normal'}
                 </p>
               </div>
             </div>
@@ -150,15 +150,15 @@ export function TravelClient({ travelBlocks, userId }: TravelClientProps) {
         <>
           {/* Duration selector */}
           <div className="space-y-2">
-            <Label>Trip duration</Label>
+            <Label>Duración del viaje</Label>
             <Select value={duration} onValueChange={v => setDuration(v as TripDuration)}>
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="short">Short (3-5 days)</SelectItem>
-                <SelectItem value="medium">Medium (6-10 days)</SelectItem>
-                <SelectItem value="long">Long (11-15 days)</SelectItem>
+                <SelectItem value="short">Corto (3-5 días)</SelectItem>
+                <SelectItem value="medium">Medio (6-10 días)</SelectItem>
+                <SelectItem value="long">Largo (11-15 días)</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -206,8 +206,8 @@ export function TravelClient({ travelBlocks, userId }: TravelClientProps) {
               <div className="flex items-start gap-2">
                 <Clock className="h-4 w-4 text-blue-400 shrink-0 mt-0.5" />
                 <p className="text-xs text-muted-foreground">
-                  <span className="text-blue-400 font-medium">Key principle: </span>
-                  Travel blocks don&apos;t count against your main plan completion rate. They&apos;re logged separately and show as travel sessions in your progress.
+                  <span className="text-blue-400 font-medium">Principio clave: </span>
+                  Los bloques de viaje no afectan tu tasa de completado del plan principal. Se registran por separado y aparecen como sesiones de viaje en tu progreso.
                 </p>
               </div>
             </CardContent>
@@ -219,8 +219,8 @@ export function TravelClient({ travelBlocks, userId }: TravelClientProps) {
         <Card>
           <CardContent className="py-10 text-center">
             <Plane className="h-10 w-10 mx-auto mb-3 text-muted-foreground/30" />
-            <p className="text-muted-foreground text-sm">Enable travel mode when you&apos;re away from your gym.</p>
-            <p className="text-xs text-muted-foreground mt-1">Select your trip duration to get a tailored protocol.</p>
+            <p className="text-muted-foreground text-sm">Activá el modo viaje cuando estés lejos del gym.</p>
+            <p className="text-xs text-muted-foreground mt-1">Seleccioná la duración de tu viaje para ver el protocolo.</p>
           </CardContent>
         </Card>
       )}

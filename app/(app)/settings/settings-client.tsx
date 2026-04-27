@@ -42,9 +42,9 @@ export function SettingsClient({ profile, userId, email }: SettingsClientProps) 
         height_cm: parseFloat(heightCm),
       })
     if (error) {
-      toast.error('Failed to save profile')
+      toast.error('Error al guardar el perfil')
     } else {
-      toast.success('Profile updated!')
+      toast.success('¡Perfil actualizado!')
     }
     setLoading(false)
   }
@@ -62,7 +62,7 @@ export function SettingsClient({ profile, userId, email }: SettingsClientProps) 
   return (
     <div className="space-y-5">
       <div>
-        <h1 className="text-2xl font-bold">Settings</h1>
+        <h1 className="text-2xl font-bold">Ajustes</h1>
         <p className="text-sm text-muted-foreground">{email}</p>
       </div>
 
@@ -71,18 +71,18 @@ export function SettingsClient({ profile, userId, email }: SettingsClientProps) 
         <CardHeader className="pb-3">
           <CardTitle className="text-sm flex items-center gap-2">
             <User className="h-4 w-4" />
-            Profile
+            Perfil
           </CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSaveProfile} className="space-y-3">
             <div className="space-y-1.5">
-              <Label className="text-xs">Name</Label>
+              <Label className="text-xs">Nombre</Label>
               <Input value={name} onChange={e => setName(e.target.value)} required />
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1.5">
-                <Label className="text-xs">Weight (kg)</Label>
+                <Label className="text-xs">Peso (kg)</Label>
                 <Input
                   type="number"
                   step="0.5"
@@ -94,7 +94,7 @@ export function SettingsClient({ profile, userId, email }: SettingsClientProps) 
                 />
               </div>
               <div className="space-y-1.5">
-                <Label className="text-xs">Height (cm)</Label>
+                <Label className="text-xs">Altura (cm)</Label>
                 <Input
                   type="number"
                   step="1"
@@ -107,10 +107,10 @@ export function SettingsClient({ profile, userId, email }: SettingsClientProps) 
               </div>
             </div>
             {bmi && (
-              <p className="text-xs text-muted-foreground">BMI: {bmi}</p>
+              <p className="text-xs text-muted-foreground">IMC: {bmi}</p>
             )}
             <Button type="submit" disabled={loading} className="w-full">
-              {loading ? 'Saving…' : 'Save profile'}
+              {loading ? 'Guardando…' : 'Guardar perfil'}
             </Button>
           </form>
         </CardContent>
@@ -121,7 +121,7 @@ export function SettingsClient({ profile, userId, email }: SettingsClientProps) 
         <CardHeader className="pb-3">
           <CardTitle className="text-sm flex items-center gap-2">
             <Dumbbell className="h-4 w-4" />
-            Starting Marks (May 2026)
+            Marcas iniciales (Mayo 2026)
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -132,11 +132,11 @@ export function SettingsClient({ profile, userId, email }: SettingsClientProps) 
               ['Front Squat', '90 kg'],
               ['Back Squat', '100 kg'],
               ['Deadlift', '160 kg'],
-              ['Strict Pull-Ups', '5 consecutive'],
-              ['Kipping Pull-Ups', '10'],
-              ['HSPU', '3 partial strict'],
-              ['Handstand Walk', '2-3 steps'],
-              ['Muscle-Up', '1-2 with momentum'],
+              ['Dominadas estrictas', '5 consecutivas'],
+              ['Dominadas kipping', '10'],
+              ['HSPU', '3 parciales estrictos'],
+              ['Handstand Walk', '2-3 pasos'],
+              ['Muscle-Up', '1-2 con impulso'],
             ].map(([skill, value]) => (
               <div key={skill} className="flex justify-between py-1.5 border-b border-border last:border-0">
                 <span className="text-muted-foreground">{skill}</span>
@@ -150,13 +150,13 @@ export function SettingsClient({ profile, userId, email }: SettingsClientProps) 
       {/* Appearance */}
       <Card>
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm">Appearance</CardTitle>
+          <CardTitle className="text-sm">Apariencia</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               {theme === 'dark' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
-              <span className="text-sm">{theme === 'dark' ? 'Dark mode' : 'Light mode'}</span>
+              <span className="text-sm">{theme === 'dark' ? 'Modo oscuro' : 'Modo claro'}</span>
             </div>
             <Switch
               checked={theme === 'dark'}
@@ -171,7 +171,7 @@ export function SettingsClient({ profile, userId, email }: SettingsClientProps) 
       {/* Sign out */}
       <Button variant="destructive" className="w-full" onClick={handleSignOut}>
         <LogOut className="h-4 w-4 mr-2" />
-        Sign out
+        Cerrar sesión
       </Button>
     </div>
   )

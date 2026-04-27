@@ -43,7 +43,7 @@ export default function LoginPage() {
             </div>
           </div>
           <CardTitle className="text-2xl">CrossFit Tracker</CardTitle>
-          <CardDescription>Nahuel — May 2026 → May 2027</CardDescription>
+          <CardDescription>Nahuel — Mayo 2026 → Mayo 2027</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleLogin} className="space-y-4">
@@ -60,7 +60,7 @@ export default function LoginPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Contraseña</Label>
               <Input
                 id="password"
                 type="password"
@@ -75,7 +75,7 @@ export default function LoginPage() {
               <p className="text-sm text-destructive">{error}</p>
             )}
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? 'Signing in…' : 'Sign in'}
+              {loading ? 'Ingresando…' : 'Ingresar'}
             </Button>
           </form>
         </CardContent>

@@ -70,7 +70,7 @@ export function PlannerClient({ blocks, completions, weekStartISO, todayISO }: P
   }
 
   const selectedBlocks = getDayBlocks(selectedDay)
-  const weekLabel = `${weekStart.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} – ${weekEnd.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`
+  const weekLabel = `${weekStart.toLocaleDateString('es-AR', { month: 'short', day: 'numeric' })} – ${weekEnd.toLocaleDateString('es-AR', { month: 'short', day: 'numeric', year: 'numeric' })}`
 
   const weekCompleted = completions.filter(c => c.status === 'completed').length
   const weekTotal = blocks.length
@@ -84,7 +84,7 @@ export function PlannerClient({ blocks, completions, weekStartISO, todayISO }: P
         </Button>
         <div className="text-center">
           <p className="font-semibold text-sm">{weekLabel}</p>
-          <p className="text-xs text-muted-foreground">{weekCompleted}/{weekTotal} completed</p>
+          <p className="text-xs text-muted-foreground">{weekCompleted}/{weekTotal} completados</p>
         </div>
         <Button variant="ghost" size="icon" onClick={nextWeek}>
           <ChevronRight className="h-4 w-4" />
@@ -133,17 +133,17 @@ export function PlannerClient({ blocks, completions, weekStartISO, todayISO }: P
       <div>
         <div className="flex items-center justify-between mb-3">
           <h2 className="font-semibold">
-            {DAY_NAMES_FULL[selectedDay]} — {getDayDate(selectedDay).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+            {DAY_NAMES_FULL[selectedDay]} — {getDayDate(selectedDay).toLocaleDateString('es-AR', { month: 'short', day: 'numeric' })}
           </h2>
           <Badge variant="outline" className="text-xs">
-            {selectedBlocks.length} block{selectedBlocks.length !== 1 ? 's' : ''}
+            {selectedBlocks.length} bloque{selectedBlocks.length !== 1 ? 's' : ''}
           </Badge>
         </div>
 
         {selectedBlocks.length === 0 ? (
           <div className="text-center py-8 text-muted-foreground">
-            <p className="text-sm">No blocks scheduled</p>
-            <p className="text-xs mt-1">Rest day 🌟</p>
+            <p className="text-sm">Sin bloques</p>
+            <p className="text-xs mt-1">Día de descanso 🌟</p>
           </div>
         ) : (
           <div className="space-y-2">
